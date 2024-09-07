@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Cancelar Cita</title>
+		<link
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div id="app" class="container mt-5">
+			<a href="../index.html" class="btn btn-primary">Volver al Inicio</a>
+			<h2 class="text-center mb-4">Cancelar Cita</h2>
+
+			<form @submit.prevent="fetchAppointment">
+				<div class="form-group">
+					<label for="id_patient">ID del Paciente</label>
+					<input
+						type="text"
+						id="id_patient"
+						v-model="id_patient"
+						class="form-control"
+						placeholder="Ingrese el ID del paciente"
+						required
+					/>
+				</div>
+				<button type="submit" class="btn btn-info btn-block">
+					Buscar Cita
+				</button>
+			</form>
+
+			<div v-if="appointmentData" class="mt-4">
+				<h3>Detalles de la Cita</h3>
+				<p>
+					<strong>ID del Paciente:</strong> {{ appointmentData.id_patient }}
+				</p>
+				<p>
+					<strong>Fecha de la Cita:</strong> {{ appointmentData.date_appointment
+					}}
+				</p>
+				<p><strong>Estado:</strong> {{ appointmentData.status }}</p>
+
+				<button
+					@click="cancelAppointment"
+					class="btn btn-danger btn-block mt-3"
+				>
+					Cancelar Cita
+				</button>
+			</div>
+
+			<div v-if="notificationMessage" :class="notificationClass" class="mt-3">
+				{{ notificationMessage }}
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<script src="../components/cancelAppointment.js"></script>
+	</body>
+</html>
