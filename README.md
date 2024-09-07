@@ -1,5 +1,13 @@
 # Despliegue del Frontend de Citas Médicas sobre Nginx
 
+## Autores
+
+- Gabriel Fernando Castillo Mendieta
+- Juan Davi Ochoa Pinilla
+- Jhon Fredy Camargo Fonseca
+
+## Introducción
+
 Este documento proporciona los pasos necesarios para montar el frontend de la aplicación de citas médicas utilizando Nginx, versión estable 1.26.2.
 
 ## Requisitos
