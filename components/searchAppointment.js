@@ -2,17 +2,12 @@ const { createApp, ref } = Vue;
 
 createApp({
   data() {
-    const startDate = ref('');
-    const endDate = ref('');
-    const appointments = ref([]); // Almacena las citas encontradas
-    const notificationMessage = ref('');
-    const notificationClass = ref('');
     return {
-      startDate,
-      endDate,
-      appointments,
-      notificationMessage,
-      notificationClass,
+      startDate: '',
+      endDate: '',
+      appointments: [],
+      notificationMessage: '',
+      notificationClass: '',
     };
   },
   methods: {
@@ -23,34 +18,38 @@ createApp({
       }
 
       try {
-        const response = await fetch(`http://localhost:3000/citas?startDate=${this.startDate}&endDate=${this.endDate}`);
+        const response = await fetch(`http://localhost:3000/appointment?start_date_appointment=${this.startDate}&end_date_appointment=${this.endDate}`);
         const data = await response.json();
 
         if (!response.ok) {
           this.showErrorMessage(data.message);
-          this.appointments.value = [];
+          this.appointments = [];
         } else {
           if (data.length === 0) {
             this.showErrorMessage('No se encontraron citas en el rango de fechas.');
           } else {
-            this.appointments.value = data;
-            this.notificationMessage.value = '';
+            this.appointments = data;
+            this.notificationMessage = '';
           }
         }
       } catch (error) {
         this.showErrorMessage('Error al buscar las citas.');
-        this.appointments.value = [];
+        this.appointments = [];
       }
     },
 
+    getImageUrl(picture_auto) {
+      return `http://localhost:3000/uploads/${picture_auto}`;
+    },
+
     showErrorMessage(message) {
-      this.notificationMessage.value = message;
-      this.notificationClass.value = 'alert alert-danger';
+      this.notificationMessage = message;
+      this.notificationClass = 'alert alert-danger';
     },
 
     showSuccessMessage(message) {
-      this.notificationMessage.value = message;
-      this.notificationClass.value = 'alert alert-success';
+      this.notificationMessage = message;
+      this.notificationClass = 'alert alert-success';
     },
   }
 }).mount('#app');

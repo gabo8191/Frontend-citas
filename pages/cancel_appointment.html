@@ -14,19 +14,23 @@
 			<a href="../index.html" class="btn btn-primary">Volver al Inicio</a>
 			<h2 class="text-center mb-4">Cancelar Cita</h2>
 
-			<form @submit.prevent="fetchAppointment">
+			<form>
 				<div class="form-group">
-					<label for="id_patient">ID del Paciente</label>
+					<label for="id_appointment">ID de la Cita</label>
 					<input
 						type="text"
-						id="id_patient"
-						v-model="id_patient"
+						id="id_appointment"
+						v-model="id_appointment"
 						class="form-control"
-						placeholder="Ingrese el ID del paciente"
+						placeholder="Ingrese el ID de la cita"
 						required
 					/>
 				</div>
-				<button type="submit" class="btn btn-info btn-block">
+				<button
+					type="button"
+					@click.prevent="fetchAppointment"
+					class="btn btn-info btn-block"
+				>
 					Buscar Cita
 				</button>
 			</form>

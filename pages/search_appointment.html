@@ -56,6 +56,16 @@
 							}}
 						</p>
 						<p><strong>Estado:</strong> {{ appointment.status }}</p>
+
+						<!-- Mostrar la imagen -->
+						<p v-if="appointment.picture_auto">
+							<strong>Foto de la autorización :</strong><br />
+							<img
+								:src="getImageUrl(appointment.picture_auto)"
+								alt="Foto de la cita"
+								style="max-width: 200px"
+							/>
+						</p>
 					</li>
 				</ul>
 			</div>
